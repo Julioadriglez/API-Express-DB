@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.json({message: 'alive'});
 });
 
-app.get('/allexplorers', async (req, res) => {
+app.get('/explorers', async (req, res) => {
     const allExplorers =  await prisma.explorer.findMany({});
     res.json(allExplorers);
   });
@@ -46,6 +46,12 @@ app.get('/allexplorers', async (req, res) => {
 	})
 
 	return res.json({message: "Actualizado correctamente"});
+});
+
+app.delete('/explorers/:id', async (req, res) => {
+	const id = parseInt(req.params.id);
+	await prisma.explorer.delete({where: {id: id}});
+	return res.json({message: "Eliminado correctamente"});
 });
 
 
