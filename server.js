@@ -56,19 +56,34 @@ app.post('/mc', async (req, res) => {
   return res.json({message});
 });
 
-  app.put('/explorers/:id', async (req, res) => {
-	const id = parseInt(req.params.id);
+app.put('/explorers/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
 
-	await prisma.explorer.update({
-		where: {
-			id: id
-		},
-		data: {
-			mission: req.body.mission
+  await prisma.explorer.update({
+    where: {
+      id: id
+    },
+    data: {
+      mission: req.body.mission
 		}
 	})
+  
+  return res.json({message: "Actualizado correctamente"});
+});
 
-	return res.json({message: "Actualizado correctamente"});
+app.put('/mc/:id', async (req, res) => {
+  const id = parseInt(req.params.id);
+
+  await prisma.MC.update({
+    where: {
+      id: id
+    },
+    data: {
+      lang: req.body.lang
+		}
+	})
+  
+  return res.json({message: "Actualizado correctamente"});
 });
 
 app.delete('/explorers/:id', async (req, res) => {
