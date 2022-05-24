@@ -92,7 +92,11 @@ app.delete('/explorers/:id', async (req, res) => {
 	return res.json({message: "Eliminado correctamente"});
 });
 
-
+app.delete('/mc/:id', async (req, res) => {
+	const id = parseInt(req.params.id);
+	await prisma.MC.delete({where: {id: id}});
+	return res.json({message: "Eliminado correctamente"});
+});
 
 app.listen(port, () => {
   console.log(`Listening to requests on port ${port}`);
