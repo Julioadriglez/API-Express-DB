@@ -47,9 +47,11 @@ app.post('/explorers', async (req, res) => {
 app.post('/mc', async (req, res) => {
   const mc = {
     name: req.body.name,
-    missionCommander: req.body.missionCommander,
     lang: req.body.lang,
-    enrollments: req.body.enrollments
+    missionCommander: req.body.missionCommander,
+    enrollments: req.body.enrollments,
+    hasCertification: req.body.hasCertification
+
   };
   const message = 'Explorer creado.';
   await prisma.MC.create({data: mc});
